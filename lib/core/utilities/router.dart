@@ -11,7 +11,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       );
     case AppRoutes.layout:
       return MaterialPageRoute(
-        builder: (context) => const Layout(),
+        builder: (context) => const LayoutPage(),
       );
     default:
       return MaterialPageRoute(

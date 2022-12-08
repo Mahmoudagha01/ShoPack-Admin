@@ -16,8 +16,8 @@ class AdminDataSourceImpl implements AdminDatasource {
   @override
   Future<Map<String, dynamic>> login(LoginParams params) async {
     final response = await apiProvider.post(endPoint: loginEndPoint, data: {
-      "email": params.email,
-      "password": params.password,
+      "email":params.email,
+      "password":params.password,
       "role": "admin"
     });
     

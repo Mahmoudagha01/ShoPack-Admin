@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_admin/business_logic/BNB/BottomNavigationBar_bloc.dart';
 import 'package:shopack_admin/core/helper/local/shared_preference.dart';
 import 'package:shopack_admin/dependency_injection.dart';
-import 'business_logic/bloc/login_bloc.dart';
+import 'business_logic/Admin/login_bloc.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => LoginBloc(injector()),
+          create: (context) => injector<LoginBloc>(),
+        ),
+          BlocProvider(
+          create: (context) => injector<BottomNavigationBarBloc>(),
         )
       ],
       child: const MaterialApp(
