@@ -8,18 +8,25 @@ class AppStrings {
   static const String enteremail =
       "Please, enter your email address. You will receive a link to create a new password via email.";
   static const String login = "Login";
+    static const String producName = "Name";
+      static const String productPrice = "Price";
+    static const String desc = "Description";
   static const String loginsuccess = "Login done successfully";
+  static const String addProduct = "Add Product";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
   static const String ok = "Ok";
   static const String send = "Send";
   static const String submit = "Submit";
   static const String emptyEmail = "Email is required";
+    static const String emptyName = "Name is required";
+      static const String emptyPrice = "Price is required";
+        static const String emptyDesc = "Description is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";
   static const String success = "success";
   static const String profilePicture = "upload_profile_picture";
-  static const String photoGalley = "photo_gallery";
+  static const String photoGalley = "Upload Product Images , at least two";
   static const String photoCamera = "camera";
   static const String about = "about";
   static const String storeDetails = "store_details";

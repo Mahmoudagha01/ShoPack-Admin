@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_admin/business_logic/BNB/BottomNavigationBar_bloc.dart';
+import 'package:shopack_admin/business_logic/products/products_bloc.dart';
 import 'package:shopack_admin/core/helper/local/shared_preference.dart';
 import 'package:shopack_admin/dependency_injection.dart';
 import 'business_logic/Admin/login_bloc.dart';
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
         ),
           BlocProvider(
           create: (context) => injector<BottomNavigationBarBloc>(),
-        )
+        ),
+            BlocProvider(
+          create: (context) => injector<ProductsBloc>(),
+        ),
       ],
       child: const MaterialApp(
         title: 'ShoPack Admin',

@@ -21,7 +21,6 @@ class AdminRepositoryImpl implements AdminRepository {
         final data = await adminDatasouece.login(params);
         return right(LoginModel.fromJson(data));
       } catch (error) {
-        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

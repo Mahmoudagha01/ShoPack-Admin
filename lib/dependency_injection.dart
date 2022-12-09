@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shopack_admin/business_logic/Admin/login_bloc.dart';
 import 'package:shopack_admin/business_logic/BNB/BottomNavigationBar_bloc.dart';
+import 'package:shopack_admin/business_logic/products/products_bloc.dart';
 import 'package:shopack_admin/core/helper/remote/network_info.dart';
 import 'package:shopack_admin/core/helper/remote/network_provider.dart';
 import 'package:shopack_admin/data/datasources/admin/admin_datasource.dart';
@@ -14,6 +15,7 @@ Future<void> init() async {
 //BloC
   injector.registerFactory(() => LoginBloc(injector()));
   injector.registerFactory(() => BottomNavigationBarBloc());
+  injector.registerFactory(() => ProductsBloc());
 //Repository
   injector.registerLazySingleton<AdminRepository>(() => AdminRepositoryImpl(
       networkInfo: injector(), adminDatasouece: injector()));

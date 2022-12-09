@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 part of 'BottomNavigationBar_bloc.dart';
 
 abstract class BottomNavigationBarState extends Equatable {
