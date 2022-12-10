@@ -8,8 +8,3 @@ const String deleteProductEndPoint = "/admin/product/";
 const String getAllUsersEndPoint = "/users/admin/allusers";
 const String getSingleUserEndPoint = "/users/admin/singleuser/";
 const String getAllOrdersEndPoint = "/admin/orders";
-
-//Cloudinary
-const String CLOUDINARY_NAME='dqqtsxgyx';
-const String CLOUDINARY_API_KEY='176463544546762';
-const String CLOUDINARY_SECRET_KEY='Tgj45XEamxt7alsqlcdnuCIzMvA';

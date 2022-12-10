@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shopack_admin/core/utilities/endpoints.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
+import 'package:shopack_admin/env/env.dart';
 
 part 'products_event.dart';
 part 'products_state.dart';
@@ -44,9 +45,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         );
 
         final cloudinary = Cloudinary.full(
-            apiKey: CLOUDINARY_API_KEY,
-            apiSecret: CLOUDINARY_SECRET_KEY,
-            cloudName: CLOUDINARY_NAME);
+            apiKey: Env.apiKey,
+            apiSecret: Env.secretKey,
+            cloudName: Env.nameKey);
         responses = await cloudinary.uploadResources(resources);
 
         for (var response in responses) {

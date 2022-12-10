@@ -45,4 +45,6 @@ app.*.map.json
 /android/app/release
 
 
-endpoints.dart
+# exclude all .env files from source control
+*.env
+*env.g.dart
