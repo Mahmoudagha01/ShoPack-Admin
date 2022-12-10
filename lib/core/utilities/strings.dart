@@ -8,10 +8,12 @@ class AppStrings {
   static const String enteremail =
       "Please, enter your email address. You will receive a link to create a new password via email.";
   static const String login = "Login";
-    static const String producName = "Name";
-      static const String productPrice = "Price";
-    static const String desc = "Description";
+  static const String producName = "Name";
+  static const String productPrice = "Price";
+    static const String productStock = "Stock";
+  static const String desc = "Description";
   static const String loginsuccess = "Login done successfully";
+    static const String addProductsuccess = "Product Added successfully";
   static const String addProduct = "Add Product";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
@@ -19,9 +21,10 @@ class AppStrings {
   static const String send = "Send";
   static const String submit = "Submit";
   static const String emptyEmail = "Email is required";
-    static const String emptyName = "Name is required";
-      static const String emptyPrice = "Price is required";
-        static const String emptyDesc = "Description is required";
+  static const String emptyName = "Name is required";
+  static const String emptyPrice = "Price is required";
+    static const String emptyStock = "Number of Products in Stock is required";
+  static const String emptyDesc = "Description is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";
   static const String success = "success";
@@ -34,6 +37,7 @@ class AppStrings {
   static const String contactUs = "contact_us";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
+
 
   // error handler
   static const String badRequestError = "This email has been used before";

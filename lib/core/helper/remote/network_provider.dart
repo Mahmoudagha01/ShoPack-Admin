@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../utilities/endpoints.dart';
 
-abstract class APIProvider{
+abstract class APIProvider {
   Future<Response> post({
     String? baseUrl,
     required String endPoint,
@@ -65,8 +65,7 @@ class APIProviderImpl implements APIProvider {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'Authorization': token,
-
+      if (token != null) 'Authorization': "Bearer $token",
     };
 
     debugPrint('URL => ${dio.options.baseUrl + endPoint}');
@@ -95,13 +94,12 @@ class APIProviderImpl implements APIProvider {
     if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
     }
-
+    dio.options.validateStatus=(status) => true;
     dio.options.headers = {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'Authorization': token,
-
+      if (token != null) 'Authorization': "Bearer $token",
     };
 
     debugPrint('URL => ${dio.options.baseUrl + endPoint}');
@@ -154,4 +152,3 @@ class APIProviderImpl implements APIProvider {
     );
   }
 }
-

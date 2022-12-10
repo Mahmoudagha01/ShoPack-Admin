@@ -6,8 +6,11 @@ import 'package:shopack_admin/business_logic/products/products_bloc.dart';
 import 'package:shopack_admin/core/helper/remote/network_info.dart';
 import 'package:shopack_admin/core/helper/remote/network_provider.dart';
 import 'package:shopack_admin/data/datasources/admin/admin_datasource.dart';
+import 'package:shopack_admin/data/datasources/product/product_datasource.dart';
 import 'package:shopack_admin/data/repositories/admin/admin_repoitory_impl.dart';
 import 'package:shopack_admin/data/repositories/admin/admin_repository.dart';
+import 'package:shopack_admin/data/repositories/product/product_repository.dart';
+import 'package:shopack_admin/data/repositories/product/products_repository_impl.dart';
 
 GetIt injector = GetIt.instance;
 
@@ -15,14 +18,19 @@ Future<void> init() async {
 //BloC
   injector.registerFactory(() => LoginBloc(injector()));
   injector.registerFactory(() => BottomNavigationBarBloc());
-  injector.registerFactory(() => ProductsBloc());
+  injector.registerFactory(() => ProductsBloc(injector()));
 //Repository
+  injector.registerLazySingleton<ProductRepository>(() => ProductRepositoryImpl(
+      networkInfo: injector(), productDataSource: injector()));
   injector.registerLazySingleton<AdminRepository>(() => AdminRepositoryImpl(
       networkInfo: injector(), adminDatasouece: injector()));
 //DataSource
   injector.registerLazySingleton<AdminDatasource>(
       () => AdminDataSourceImpl(apiProvider: injector()));
+  injector.registerLazySingleton<ProductDataSource>(
+      () => ProductDataSourceImpl(apiProvider: injector()));
 //Core
+
   injector
       .registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injector()));
   injector.registerLazySingleton(() => InternetConnectionChecker());
