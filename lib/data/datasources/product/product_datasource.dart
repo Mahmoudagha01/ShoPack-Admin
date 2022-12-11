@@ -1,11 +1,6 @@
-
-import 'package:dio/dio.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_admin/core/helper/remote/network_provider.dart';
 import 'package:shopack_admin/core/utilities/endpoints.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
-
-import '../../../business_logic/products/products_bloc.dart';
 import '../../../core/helper/local/shared_preference.dart';
 
 abstract class ProductDataSource {
@@ -27,7 +22,7 @@ class ProductDataSourceImpl implements ProductDataSource {
       "name": params.name,
       "description": params.description,
       "price": params.price,
-      "stock": params.price,
+      "stock": params.stock,
       "category": params.category,
       "images":params.images,
     });

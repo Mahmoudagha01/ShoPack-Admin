@@ -2,10 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:cloudinary_sdk/cloudinary_sdk.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shopack_admin/core/utilities/endpoints.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
-import 'package:shopack_admin/env/env.dart';
+import '../../core/env/env.dart';
 
 part 'products_event.dart';
 part 'products_state.dart';
@@ -22,6 +21,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     "Category",
     "Electronics",
     "Clothes",
+    "Books"
     "Shoes",
     "Camera",
     "Sports",
@@ -58,6 +58,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         }
       }
       emit(UploadImagesState(imageFileList));
+      imageFileList = [];
     });
     on<ChangeDropDownValue>((event, emit) {
       emit(DropdownUnSelectedState());
@@ -71,8 +72,10 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
           AddProductParams(event.name, event.price, event.category,
               event.description, event.stock, event.images));
       failureOrSuccess.fold(
-          (failure) => emit(AddProductsErrorState(failure.message)),
-          (success) => emit(AddProductsLoadedState(success)));
+          (failure) => emit(AddProductsErrorState(failure.message)), (success) {
+        emit(AddProductsLoadedState(success));
+        dropdownvalue = 'Category';
+      });
     });
   }
 }

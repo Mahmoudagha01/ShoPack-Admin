@@ -24,10 +24,8 @@ class ProductRepositoryImpl implements ProductRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await productDataSource.addProduct(params);
-        print(data);
         return right(ProductsModel.fromJson(data));
       } catch (error) {
-        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

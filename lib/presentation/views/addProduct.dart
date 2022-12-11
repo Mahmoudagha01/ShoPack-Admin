@@ -214,11 +214,14 @@ class AddProductView extends StatelessWidget {
                 ),
                 BlocConsumer<ProductsBloc, ProductsState>(
                   listener: (context, state) {
-                    if (state is AddProductsLoadedState) {
+                    if (state is AddProductsLoadedState && state.data.success) {
                       showSnackbar(
                           AppStrings.addProductsuccess, context, Colors.green);
                     } else if (state is AddProductsErrorState) {
                       showSnackbar(state.message, context, Colors.red);
+                    } else if (state is AddProductsLoadedState) {
+                      showSnackbar(
+                          AppStrings.forbiddenError, context, Colors.red);
                     }
                   },
                   builder: (context, state) {
@@ -237,6 +240,7 @@ class AddProductView extends StatelessWidget {
                                         pStock.text,
                                         BlocProvider.of<ProductsBloc>(context)
                                             .imagesUrls));
+                               
                               }
                             },
                             icon: const Icon(Icons.add),
