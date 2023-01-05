@@ -1,14 +1,21 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopack_admin/business_logic/products/products_bloc.dart';
-import 'package:shopack_admin/core/utilities/strings.dart';
-import 'package:shopack_admin/presentation/widgets/alert_snackbar.dart';
-import 'package:shopack_admin/presentation/widgets/maintextformfield.dart';
+import '../../business_logic/products/products_bloc.dart';
+import '../../core/utilities/strings.dart';
+import '../../data/models/all_product_model.dart';
+import '../widgets/alert_snackbar.dart';
+import '../widgets/maintextformfield.dart';
 
-class AddProductView extends StatelessWidget {
-  AddProductView({super.key});
+class EditProductView extends StatefulWidget {
+  final AllProductModel product;
+  const EditProductView({super.key, required this.product});
 
+  @override
+  State<EditProductView> createState() => _EditProductViewState();
+}
+
+class _EditProductViewState extends State<EditProductView> {
   final formKey = GlobalKey<FormState>();
 
   final TextEditingController pName = TextEditingController();
@@ -16,18 +23,26 @@ class AddProductView extends StatelessWidget {
   final TextEditingController pDescription = TextEditingController();
   final TextEditingController pStock = TextEditingController();
   final TextEditingController pPrice = TextEditingController();
+  @override
+  void initState() {
+    pName.text = widget.product.name;
+    pDescription.text = widget.product.description;
+    pPrice.text = widget.product.price.toString();
+    pStock.text = widget.product.stock.toString();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(AppStrings.addProduct),
+        title: const Text(AppStrings.editProduct),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
-                BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+            BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
           },
         ),
       ),
@@ -224,12 +239,18 @@ class AddProductView extends StatelessWidget {
                   listener: (context, state) {
                     if (state is AddProductsLoadedState && state.data.success) {
                       showSnackbar(
-                          AppStrings.addProductsuccess, context, Colors.green);
+                        AppStrings.edieProductsuccess,
+                        context,
+                        Colors.green,
+                      );
                     } else if (state is AddProductsErrorState) {
                       showSnackbar(state.message, context, Colors.red);
                     } else if (state is AddProductsLoadedState) {
                       showSnackbar(
-                          AppStrings.forbiddenError, context, Colors.red);
+                        AppStrings.forbiddenError,
+                        context,
+                        Colors.red,
+                      );
                     }
                   },
                   builder: (context, state) {
@@ -239,19 +260,25 @@ class AddProductView extends StatelessWidget {
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 BlocProvider.of<ProductsBloc>(context).add(
-                                    CreateProduct(
-                                        pName.text,
-                                        pPrice.text,
-                                        BlocProvider.of<ProductsBloc>(context)
-                                            .dropdownvalue,
-                                        pDescription.text,
-                                        pStock.text,
-                                        BlocProvider.of<ProductsBloc>(context)
-                                            .imagesUrls));
+                                  EditProduct(
+                                    pName.text,
+                                    pPrice.text,
+                                    BlocProvider.of<ProductsBloc>(context)
+                                        .dropdownvalue,
+                                    pDescription.text,
+                                    pStock.text,
+                                    BlocProvider.of<ProductsBloc>(context)
+                                        .imagesUrls,
+                                    widget.product.id,
+                                  ),
+                                );
                               }
                             },
-                            icon: const Icon(Icons.add),
-                            label: const Text(AppStrings.addProduct));
+                            icon: const Icon(Icons.edit),
+                            label: const Text(
+                              AppStrings.editProduct,
+                            ),
+                          );
                   },
                 )
               ],

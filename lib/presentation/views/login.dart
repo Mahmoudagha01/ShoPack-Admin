@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_admin/core/utilities/endpoints.dart';
 import '../../business_logic/Admin/login_bloc.dart';
 import '../../core/helper/local/shared_preference.dart';
 import '../../core/utilities/routes.dart';
@@ -44,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                   MainTFF(
-                    max: 1,
+                      max: 1,
                       labelText: AppStrings.email,
                       hintText: AppStrings.email,
                       controller: emailController,
@@ -60,13 +61,14 @@ class _LoginViewState extends State<LoginView> {
                       },
                       isPassword: false,
                       borderRadius: 16,
-                      border: const OutlineInputBorder(borderSide: BorderSide.none),
+                      border:
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                       inputType: TextInputType.emailAddress),
                   const SizedBox(
                     height: 20,
                   ),
                   MainTFF(
-                    max: 1,
+                      max: 1,
                       labelText: AppStrings.password,
                       hintText: AppStrings.password,
                       controller: passController,
@@ -81,7 +83,8 @@ class _LoginViewState extends State<LoginView> {
                         return null;
                       },
                       isPassword: hidePass,
-                      border: const OutlineInputBorder(borderSide: BorderSide.none),
+                      border:
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                       suffix: IconButton(
                         color: Colors.blue,
                         icon: hidePass
@@ -103,6 +106,8 @@ class _LoginViewState extends State<LoginView> {
                       if (state is LoginFinishedState && state.data.success!) {
                         PreferenceHelper.saveDataInSharedPreference(
                             key: "token", value: state.data.token);
+                        token = PreferenceHelper.getDataFromSharedPreference(
+                            key: "token");
                         showSnackbar(
                             AppStrings.loginsuccess, context, Colors.green);
                         Navigator.pushReplacementNamed(

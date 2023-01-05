@@ -10,11 +10,13 @@ class AppStrings {
   static const String login = "Login";
   static const String producName = "Name";
   static const String productPrice = "Price";
-    static const String productStock = "Stock";
+  static const String productStock = "Stock";
   static const String desc = "Description";
   static const String loginsuccess = "Login done successfully";
-    static const String addProductsuccess = "Product Added successfully";
+  static const String addProductsuccess = "Product Added successfully";
+  static const String edieProductsuccess = "Product Updated successfully";
   static const String addProduct = "Add Product";
+  static const String editProduct = "Edit Product";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
   static const String ok = "Ok";
@@ -23,7 +25,7 @@ class AppStrings {
   static const String emptyEmail = "Email is required";
   static const String emptyName = "Name is required";
   static const String emptyPrice = "Price is required";
-    static const String emptyStock = "Number of Products in Stock is required";
+  static const String emptyStock = "Number of Products in Stock is required";
   static const String emptyDesc = "Description is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";
@@ -37,7 +39,6 @@ class AppStrings {
   static const String contactUs = "contact_us";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
-
 
   // error handler
   static const String badRequestError = "This email has been used before";

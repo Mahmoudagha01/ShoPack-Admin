@@ -4,7 +4,9 @@ import 'package:shopack_admin/core/error/failure.dart';
 import 'package:shopack_admin/core/helper/remote/network_info.dart';
 import 'package:shopack_admin/core/utilities/strings.dart';
 import 'package:shopack_admin/data/datasources/product/product_datasource.dart';
+import 'package:shopack_admin/data/models/all_product_model.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
+import 'package:shopack_admin/data/models/response_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -24,6 +26,36 @@ class ProductRepositoryImpl implements ProductRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await productDataSource.addProduct(params);
+        return right(ProductsModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AllProductsModel>> getAllProducts(
+      NoParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productDataSource.getAllProducts(params);
+        return right(AllProductsModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProductsModel>> editProduct(
+      EditProductParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productDataSource.editProduct(params);
         return right(ProductsModel.fromJson(data));
       } catch (error) {
         return left(ErrorHandler.handle(error).failure);

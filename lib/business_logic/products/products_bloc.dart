@@ -5,6 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
 import '../../core/env/env.dart';
+import '../../data/models/all_product_model.dart';
+import '../../data/models/response_model.dart';
+import '../../data/repositories/product/products_repository_impl.dart';
 
 part 'products_event.dart';
 part 'products_state.dart';
@@ -21,7 +24,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     "Category",
     "Electronics",
     "Clothes",
-    "Books"
+    "Books",
     "Shoes",
     "Camera",
     "Sports",
@@ -31,8 +34,8 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     this.productRepository,
   ) : super(ProductsInitial()) {
     on<UploadImage>((event, emit) async {
-      emit(UploadImagesLoadingState());
       final List<XFile> selectedImages = await imagePicker.pickMultiImage();
+      emit(UploadImagesLoadingState());
       if (selectedImages.isNotEmpty) {
         imageFileList.addAll(selectedImages);
         final resources = await Future.wait(
@@ -75,6 +78,28 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
           (failure) => emit(AddProductsErrorState(failure.message)), (success) {
         emit(AddProductsLoadedState(success));
         dropdownvalue = 'Category';
+      });
+    });
+
+    on<GetAllProducts>((event, emit) async {
+      emit(GetAllProductsLoadingState());
+      final failureOrSuccess =
+          await productRepository.getAllProducts(NoParams());
+      failureOrSuccess
+          .fold((failure) => emit(GetAllProductsErrorState(failure.message)),
+              (success) {
+        emit(GetAllProductsLoadedState(success));
+      });
+    });
+
+    on<EditProduct>((event, emit) async {
+       emit(AddProductsLoadingState());
+      final failureOrSuccess = await productRepository.editProduct(
+          EditProductParams(event.name, event.price, event.category,
+              event.description, event.stock, event.images,event.id));
+      failureOrSuccess.fold(
+          (failure) => emit(AddProductsErrorState(failure.message)), (success) {
+        emit(AddProductsLoadedState(success));
       });
     });
   }

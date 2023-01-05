@@ -36,3 +36,33 @@ class AddProductsErrorState extends ProductsState {
 
   const AddProductsErrorState(this.message);
 }
+
+class GetAllProductsLoadingState extends ProductsState {}
+
+class GetAllProductsLoadedState extends ProductsState {
+  final AllProductsModel data;
+
+  const GetAllProductsLoadedState(this.data);
+}
+
+class GetAllProductsErrorState extends ProductsState {
+  final String message;
+
+  const GetAllProductsErrorState(this.message);
+}
+
+
+
+class EditProductsLoadingState extends ProductsState {}
+
+class EditProductsLoadedState extends ProductsState {
+  final ResponseModel data;
+
+  const EditProductsLoadedState(this.data);
+}
+
+class EditProductsErrorState extends ProductsState {
+  final String message;
+
+  const EditProductsErrorState(this.message);
+}

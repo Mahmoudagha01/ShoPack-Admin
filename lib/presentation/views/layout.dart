@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_admin/business_logic/products/products_bloc.dart';
 import 'package:shopack_admin/presentation/views/Reviews.dart';
 import 'package:shopack_admin/presentation/views/dashboard.dart';
 import 'package:shopack_admin/presentation/views/orders.dart';
@@ -8,12 +9,8 @@ import 'package:shopack_admin/presentation/views/users.dart';
 
 import '../../business_logic/BNB/BottomNavigationBar_bloc.dart';
 
-
-
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
-
-
 
   @override
   State<LayoutPage> createState() => _LayoutPageState();
@@ -22,9 +19,9 @@ class LayoutPage extends StatefulWidget {
 class _LayoutPageState extends State<LayoutPage> {
   @override
   void initState() {
-
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(
@@ -33,18 +30,18 @@ class _LayoutPageState extends State<LayoutPage> {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
-      
             currentIndex: state.index,
             onTap: (index) {
               switch (index) {
                 case 0:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadDashboard());
-               
+
                   break;
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadProducts());
+                  BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
                   break;
                 case 2:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
@@ -91,7 +88,7 @@ class _LayoutPageState extends State<LayoutPage> {
             builder: (context, state) {
               if (state is DashboardState) {
                 return const DashBoardView();
-              } else if (state is ProductsState) {
+              } else if (state is ProductsBtnState) {
                 return const ProductsView();
               } else if (state is OrdersState) {
                 return const OrdersView();

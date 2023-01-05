@@ -9,7 +9,7 @@ class BottomNavigationBarBloc
   BottomNavigationBarBloc() : super(DashboardState()) {
 
     on<LoadDashboard>((event, emit) => emit( DashboardState()));
-    on<LoadProducts>((event, emit) => emit( ProductsState()));
+    on<LoadProducts>((event, emit) => emit( ProductsBtnState()));
     on<LoadOrders>((event, emit) => emit( OrdersState()));
      on<LoadUsers>((event, emit) => emit( UsersState()));
     on<LoadReviews>((event, emit) => emit( ReviewState()));

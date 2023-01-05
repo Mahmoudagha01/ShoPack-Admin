@@ -21,7 +21,7 @@ class DashboardState extends BottomNavigationBarState {
   List<Object> get props => [index, title];
 }
 
-class ProductsState extends BottomNavigationBarState {
+class ProductsBtnState extends BottomNavigationBarState {
   @override
   final int index = 1;
   final String title = 'Products';
