@@ -8,6 +8,8 @@ abstract class ProductDataSource {
   Future<Map<String, dynamic>> getAllProducts(NoParams params);
   Future<Map<String, dynamic>> editProduct(EditProductParams params);
   Future<Map<String, dynamic>> deletProduct(DeleteProductParams params);
+  Future<Map<String, dynamic>> getReviews(GetReviewsParams params);
+  Future<Map<String, dynamic>> deleteReview(DeleteReviewsParams params);
 }
 
 class ProductDataSourceImpl implements ProductDataSource {
@@ -57,6 +59,21 @@ class ProductDataSourceImpl implements ProductDataSource {
   Future<Map<String, dynamic>> deletProduct(DeleteProductParams params) async {
     final response = await apiProvider.delete(
         endPoint: '$deleteProductEndPoint${params.id}', token: token ?? '');
+    return response.data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> getReviews(GetReviewsParams params) async {
+    final response = await apiProvider
+        .get(endPoint: getAllReviewsEndPoint, query: {'id': params.id});
+    return response.data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> deleteReview(DeleteReviewsParams params) async {
+    final response = await apiProvider.delete(
+        endPoint: deleteReviewsEndPoint,
+        query: {'productId': params.productId, 'id': params.reviewId});
     return response.data;
   }
 }

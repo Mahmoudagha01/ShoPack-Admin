@@ -7,6 +7,7 @@ import 'package:shopack_admin/data/datasources/product/product_datasource.dart';
 import 'package:shopack_admin/data/models/all_product_model.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
 import 'package:shopack_admin/data/models/response_model.dart';
+import 'package:shopack_admin/data/models/reviews_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -71,6 +72,34 @@ class ProductRepositoryImpl implements ProductRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await productDataSource.deletProduct(params);
+        return right(ResponseModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ReviewsModel>> getReviews(GetReviewsParams params) async{
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productDataSource.getReviews(params);
+        return right(ReviewsModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, ResponseModel>> deleteReview(DeleteReviewsParams params) async{
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productDataSource.deleteReview(params);
         return right(ResponseModel.fromJson(data));
       } catch (error) {
         return left(ErrorHandler.handle(error).failure);

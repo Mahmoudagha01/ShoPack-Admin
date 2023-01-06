@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_admin/business_logic/products/products_bloc.dart';
-import 'package:shopack_admin/presentation/views/Reviews.dart';
 import 'package:shopack_admin/presentation/views/dashboard.dart';
 import 'package:shopack_admin/presentation/views/orders.dart';
 import 'package:shopack_admin/presentation/views/products.dart';
@@ -51,10 +50,6 @@ class _LayoutPageState extends State<LayoutPage> {
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadUsers());
                   break;
-                case 4:
-                  BlocProvider.of<BottomNavigationBarBloc>(context)
-                      .add(LoadReviews());
-                  break;
                 default:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadDashboard());
@@ -78,10 +73,6 @@ class _LayoutPageState extends State<LayoutPage> {
                 label: 'Users',
                 activeIcon: Icon(Icons.group),
               ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.rate_review_outlined),
-                  label: 'Reviews',
-                  activeIcon: Icon(Icons.rate_review)),
             ],
           ),
           body: BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(
@@ -94,8 +85,6 @@ class _LayoutPageState extends State<LayoutPage> {
                 return const OrdersView();
               } else if (state is UsersState) {
                 return const UsersView();
-              } else if (state is ReviewState) {
-                return const ReviewsView();
               } else {
                 return const SizedBox();
               }

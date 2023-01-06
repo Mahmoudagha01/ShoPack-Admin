@@ -25,7 +25,3 @@ class LoadUsers extends BottomNavigationBarEvent {
   @override
   List<Object> get props => [];
 }
-class LoadReviews extends BottomNavigationBarEvent {
-  @override
-  List<Object> get props => [];
-}

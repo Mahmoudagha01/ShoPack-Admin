@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopack_admin/presentation/views/addProduct.dart';
 import 'package:shopack_admin/presentation/views/edit_product.dart';
 import 'package:shopack_admin/presentation/views/layout.dart';
+import 'package:shopack_admin/presentation/views/reviews.dart';
 import '../../data/models/all_product_model.dart';
 import '../../presentation/views/login.dart';
 import '../utilities/routes.dart';
@@ -24,6 +25,11 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       final product = settings.arguments as AllProductModel;
       return MaterialPageRoute(
         builder: (context) => EditProductView(product: product),
+      );
+       case AppRoutes.reviews:
+        final productId = settings.arguments as String;
+      return MaterialPageRoute(
+        builder: (context) =>  ReviewsView(productId: productId),
       );
     default:
       return MaterialPageRoute(

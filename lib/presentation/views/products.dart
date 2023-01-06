@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_admin/core/utilities/routes.dart';
 import 'package:shopack_admin/core/utilities/strings.dart';
 import 'package:shopack_admin/presentation/widgets/alert_snackbar.dart';
+import 'package:shopack_admin/presentation/widgets/product_list_tile.dart';
 import '../../business_logic/products/products_bloc.dart';
 
 class ProductsView extends StatefulWidget {
@@ -13,6 +14,7 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,39 +43,7 @@ class _ProductsViewState extends State<ProductsView> {
               final product = state.data.products;
               return ListView.builder(
                 itemCount: product.length,
-                itemBuilder: (context, index) => ListTile(
-                  leading: SizedBox(
-                      width: 50,
-                      child: Image.network(product[index].images[0].url)),
-                  title: Text(product[index].name,
-                      overflow: TextOverflow.ellipsis),
-                  subtitle: Text(product[index].category),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.blue,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.editProduct,
-                              arguments: product[index]);
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          BlocProvider.of<ProductsBloc>(context)
-                              .add(DeleteProduct(product[index].id));
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                itemBuilder: (context, index) => ProductListTile(product: product[index])
               );
             } else if (state is GetAllProductsErrorState) {
               return Text(state.message);

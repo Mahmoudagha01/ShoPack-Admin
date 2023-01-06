@@ -62,3 +62,28 @@ class DeleteProductsErrorState extends ProductsState {
   final String message;
   const DeleteProductsErrorState(this.message);
 }
+
+
+class GetReviewsLoadingState extends ProductsState {}
+
+class GetReviewsLoadedState extends ProductsState {
+  final ReviewsModel data;
+  const GetReviewsLoadedState(this.data);
+}
+
+class GetReviewsErrorState extends ProductsState {
+  final String message;
+  const GetReviewsErrorState(this.message);
+}
+
+class DeleteReviewLoadingState extends ProductsState {}
+
+class DeleteReviewLoadedState extends ProductsState {
+  final ResponseModel data;
+  const DeleteReviewLoadedState(this.data);
+}
+
+class DeleteReviewErrorState extends ProductsState {
+  final String message;
+  const DeleteReviewErrorState(this.message);
+}

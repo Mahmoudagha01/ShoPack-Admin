@@ -47,3 +47,16 @@ class DeleteProduct extends ProductsEvent {
 
   const DeleteProduct(this.id);
 }
+class GetReviews extends ProductsEvent {
+    final String id;
+
+  const GetReviews(this.id);
+}
+
+class DeleteReview extends ProductsEvent {
+ final String productId;
+  final String reviewId;
+
+  const DeleteReview(this.productId, this.reviewId);
+  
+}

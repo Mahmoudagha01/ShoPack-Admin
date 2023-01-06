@@ -1,10 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_admin/presentation/widgets/review_card.dart';
+
+import '../../business_logic/products/products_bloc.dart';
+import '../../core/utilities/strings.dart';
 
 class ReviewsView extends StatelessWidget {
-  const ReviewsView({super.key});
+  final String productId;
+  const ReviewsView({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(AppStrings.reviews),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+          },
+        ),
+      ),
+      body: BlocBuilder<ProductsBloc, ProductsState>(
+        builder: (context, state) {
+          if (state is GetReviewsLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is GetReviewsLoadedState) {
+            return ListView.builder(
+              itemCount: state.data.reviews.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ReviewCard(
+                      product: state.data.reviews[index], productId: productId),
+                );
+              },
+            );
+          } else if (state is GetReviewsErrorState) {
+            return Center(child: Text(state.message));
+          } else {
+            return const SizedBox();
+          }
+        },
+      ),
+    );
   }
 }

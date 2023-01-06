@@ -9,4 +9,6 @@ const String deleteProductEndPoint = "/admin/product/";
 const String getAllUsersEndPoint = "/users/admin/allusers";
 const String getSingleUserEndPoint = "/users/admin/singleuser/";
 const String getAllOrdersEndPoint = "/admin/orders";
+const String getAllReviewsEndPoint ="/reviews";
+const String deleteReviewsEndPoint ="/reviews";
 String ? token;

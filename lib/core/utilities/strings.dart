@@ -1,5 +1,4 @@
 class AppStrings {
-  static const String noRouteFound = "no_route_found";
   static const String password = "Password";
   static const String passwordEmpty = "Password is Required";
   static const String passwordError =
@@ -17,8 +16,11 @@ class AppStrings {
   static const String edieProductsuccess = "Product Updated successfully";
   static const String addProduct = "Add Product";
   static const String editProduct = "Edit Product";
+    static const String deleteProduct = "Delete Product";
+   static const String showReviews = "Show Reviews";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
+   static const String reviews = "Reviews";
   static const String ok = "Ok";
   static const String send = "Send";
   static const String submit = "Submit";

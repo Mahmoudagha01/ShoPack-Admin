@@ -7,7 +7,7 @@ import 'package:shopack_admin/data/repositories/product/product_repository.dart'
 import '../../core/env/env.dart';
 import '../../data/models/all_product_model.dart';
 import '../../data/models/response_model.dart';
-import '../../data/repositories/product/products_repository_impl.dart';
+import '../../data/models/reviews_model.dart';
 
 part 'products_event.dart';
 part 'products_state.dart';
@@ -110,9 +110,29 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       failureOrSuccess
           .fold((failure) => emit(DeleteProductsErrorState(failure.message)),
               (success) {
-   
         add(GetAllProducts());
-     emit(DeleteProductsLoadedState(success));
+        emit(DeleteProductsLoadedState(success));
+      });
+    });
+    on<GetReviews>((event, emit) async {
+      emit(GetReviewsLoadingState());
+      final failureOrSuccess =
+          await productRepository.getReviews(GetReviewsParams(event.id));
+      failureOrSuccess.fold(
+          (failure) => emit(GetReviewsErrorState(failure.message)), (success) {
+        emit(GetReviewsLoadedState(success));
+      });
+    });
+
+    on<DeleteReview>((event, emit) async {
+      emit(DeleteReviewLoadingState());
+      final failureOrSuccess = await productRepository
+          .deleteReview(DeleteReviewsParams(event.productId, event.reviewId));
+      failureOrSuccess
+          .fold((failure) => emit(DeleteReviewErrorState(failure.message)),
+              (success) {
+       // add(GetReviews(event.productId));
+        emit(DeleteReviewLoadedState(success));
       });
     });
   }
