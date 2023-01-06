@@ -37,6 +37,16 @@ abstract class APIProvider {
     int? timeOut,
     bool isMultipart = false,
   });
+  Future<Response> delete({
+    String? baseUrl,
+    required String endPoint,
+    dynamic data,
+    dynamic query,
+    String? token,
+    CancelToken? cancelToken,
+    int? timeOut,
+    bool isMultipart = false,
+  });
 }
 
 class APIProviderImpl implements APIProvider {
@@ -94,7 +104,7 @@ class APIProviderImpl implements APIProvider {
     if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
     }
-    dio.options.validateStatus=(status) => true;
+    dio.options.validateStatus = (status) => true;
     dio.options.headers = {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
@@ -147,7 +157,40 @@ class APIProviderImpl implements APIProvider {
       endPoint,
       data: data,
       queryParameters: query,
-      onSendProgress: progressCallback,
+      cancelToken: cancelToken,
+    );
+  }
+
+  @override
+  Future<Response> delete(
+      {String? baseUrl,
+      required String endPoint,
+      data,
+      query,
+      String? token,
+      CancelToken? cancelToken,
+      int? timeOut,
+      bool isMultipart = false}) async {
+    if (timeOut != null) {
+      dio.options.connectTimeout = timeOut;
+    }
+
+    dio.options.headers = {
+      if (isMultipart) 'Content-Type': 'multipart/form-data',
+      if (!isMultipart) 'Content-Type': 'application/json',
+      if (!isMultipart) 'Accept': 'application/json',
+      if (token != null) 'Authorization': "Bearer $token",
+    };
+
+    debugPrint('URL => ${dio.options.baseUrl + endPoint}');
+    debugPrint('Header => ${dio.options.headers.toString()}');
+    debugPrint('Body => $data');
+    debugPrint('Query => $query');
+
+    return await dio.delete(
+      endPoint,
+      data: data,
+      queryParameters: query,
       cancelToken: cancelToken,
     );
   }

@@ -93,13 +93,26 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     });
 
     on<EditProduct>((event, emit) async {
-       emit(AddProductsLoadingState());
+      emit(AddProductsLoadingState());
       final failureOrSuccess = await productRepository.editProduct(
           EditProductParams(event.name, event.price, event.category,
-              event.description, event.stock, event.images,event.id));
+              event.description, event.stock, event.images, event.id));
       failureOrSuccess.fold(
           (failure) => emit(AddProductsErrorState(failure.message)), (success) {
         emit(AddProductsLoadedState(success));
+      });
+    });
+
+    on<DeleteProduct>((event, emit) async {
+      emit(DeleteProductsLoadingState());
+      final failureOrSuccess =
+          await productRepository.deleteProduct(DeleteProductParams(event.id));
+      failureOrSuccess
+          .fold((failure) => emit(DeleteProductsErrorState(failure.message)),
+              (success) {
+   
+        add(GetAllProducts());
+     emit(DeleteProductsLoadedState(success));
       });
     });
   }

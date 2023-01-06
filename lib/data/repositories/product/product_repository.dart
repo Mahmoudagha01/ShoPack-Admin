@@ -10,13 +10,14 @@ abstract class ProductRepository {
   late NetworkInfo networkInfo;
   late ProductDataSource productDataSource;
 
-  Future<Either<Failure,ProductsModel>> addProduct(AddProductParams params);
-  Future<Either<Failure,AllProductsModel>> getAllProducts(NoParams params);
-  Future<Either<Failure,ProductsModel>> editProduct(EditProductParams params);
+  Future<Either<Failure, ProductsModel>> addProduct(AddProductParams params);
+  Future<Either<Failure, AllProductsModel>> getAllProducts(NoParams params);
+  Future<Either<Failure, ProductsModel>> editProduct(EditProductParams params);
+  Future<Either<Failure, ResponseModel>> deleteProduct(
+      DeleteProductParams params);
 }
-class NoParams{
 
-}
+class NoParams {}
 
 class AddProductParams {
   final String name;
@@ -26,7 +27,8 @@ class AddProductParams {
   final String stock;
   final List images;
 
-  AddProductParams(this.name, this.price, this.category, this.description, this.stock, this.images);
+  AddProductParams(this.name, this.price, this.category, this.description,
+      this.stock, this.images);
 }
 
 class EditProductParams {
@@ -37,5 +39,12 @@ class EditProductParams {
   final String stock;
   final List images;
   final String id;
-  EditProductParams(this.name, this.price, this.category, this.description, this.stock, this.images,this.id);
+  EditProductParams(this.name, this.price, this.category, this.description,
+      this.stock, this.images, this.id);
+}
+
+class DeleteProductParams {
+  final String id;
+
+  DeleteProductParams(this.id);
 }

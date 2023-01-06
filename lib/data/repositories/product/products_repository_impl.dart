@@ -64,4 +64,19 @@ class ProductRepositoryImpl implements ProductRepository {
       return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }
+
+  @override
+  Future<Either<Failure, ResponseModel>> deleteProduct(
+      DeleteProductParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productDataSource.deletProduct(params);
+        return right(ResponseModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
 }

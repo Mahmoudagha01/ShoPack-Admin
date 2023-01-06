@@ -51,18 +51,14 @@ class GetAllProductsErrorState extends ProductsState {
   const GetAllProductsErrorState(this.message);
 }
 
+class DeleteProductsLoadingState extends ProductsState {}
 
-
-class EditProductsLoadingState extends ProductsState {}
-
-class EditProductsLoadedState extends ProductsState {
+class DeleteProductsLoadedState extends ProductsState {
   final ResponseModel data;
-
-  const EditProductsLoadedState(this.data);
+  const DeleteProductsLoadedState(this.data);
 }
 
-class EditProductsErrorState extends ProductsState {
+class DeleteProductsErrorState extends ProductsState {
   final String message;
-
-  const EditProductsErrorState(this.message);
+  const DeleteProductsErrorState(this.message);
 }

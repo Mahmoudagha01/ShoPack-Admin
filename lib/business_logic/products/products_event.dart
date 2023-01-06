@@ -41,3 +41,9 @@ class EditProduct extends ProductsEvent {
   const EditProduct(this.name, this.price, this.category, this.description,
       this.stock, this.images, this.id);
 }
+
+class DeleteProduct extends ProductsEvent {
+    final String id;
+
+  const DeleteProduct(this.id);
+}

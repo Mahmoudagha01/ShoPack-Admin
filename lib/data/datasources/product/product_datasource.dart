@@ -7,6 +7,7 @@ abstract class ProductDataSource {
   Future<Map<String, dynamic>> addProduct(AddProductParams params);
   Future<Map<String, dynamic>> getAllProducts(NoParams params);
   Future<Map<String, dynamic>> editProduct(EditProductParams params);
+  Future<Map<String, dynamic>> deletProduct(DeleteProductParams params);
 }
 
 class ProductDataSourceImpl implements ProductDataSource {
@@ -39,17 +40,23 @@ class ProductDataSourceImpl implements ProductDataSource {
   @override
   Future<Map<String, dynamic>> editProduct(EditProductParams params) async {
     final response = await apiProvider.put(
-      endPoint: '$editProductEndPoint${params.id}',
-       data: {
-      "name": params.name,
-      "description": params.description,
-      "price": params.price,
-      "stock": params.stock,
-      "category": params.category,
-      "images": params.images,
-    },
-      token: token??''
-    );
+        endPoint: '$editProductEndPoint${params.id}',
+        data: {
+          "name": params.name,
+          "description": params.description,
+          "price": params.price,
+          "stock": params.stock,
+          "category": params.category,
+          "images": params.images,
+        },
+        token: token ?? '');
+    return response.data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> deletProduct(DeleteProductParams params) async {
+    final response = await apiProvider.delete(
+        endPoint: '$deleteProductEndPoint${params.id}', token: token ?? '');
     return response.data;
   }
 }
