@@ -88,10 +88,31 @@ class UserCard extends StatelessWidget {
           ),
         ),
         Center(
-            child: CircleAvatar(
-          radius: 50,
-          backgroundImage: NetworkImage(user.avatar!.url),
-        ))
+          child: CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(user.avatar!.url),
+          ),
+        ),
+        Positioned(
+          top: 50,
+          right: 30,
+          child: TextButton.icon(
+            onPressed: () {
+              BlocProvider.of<UserBloc>(context).add(DeleteUser(user.id));
+            },
+            label: Text(
+              AppStrings.delete,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Colors.red),
+            ),
+            icon: const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+          ),
+        ),
       ],
     );
   }

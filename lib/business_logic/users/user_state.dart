@@ -2,7 +2,7 @@ part of 'user_bloc.dart';
 
 abstract class UserState extends Equatable {
   const UserState();
-  
+
   @override
   List<Object> get props => [];
 }
@@ -22,8 +22,15 @@ class GetAllUsersErrorState extends UserState {
 
   const GetAllUsersErrorState(this.message);
 }
+
 class UpdateRoleLoadedState extends UserState {
   final ResponseModel data;
 
   const UpdateRoleLoadedState(this.data);
+}
+
+class DeleteUserLoadedState extends UserState {
+  final ResponseModel data;
+
+  const DeleteUserLoadedState(this.data);
 }

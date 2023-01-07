@@ -31,5 +31,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         add(GetUsers());
       });
     });
+
+    on<DeleteUser>((event, emit) async {
+      emit(GetAllUsersLoadingState());
+      final failureOrSuccess =
+          await usersRepository.deleteUser(DeletUserParams(event.id));
+      failureOrSuccess.fold(
+          (failure) => emit(GetAllUsersErrorState(failure.message)), (success) {
+        emit(DeleteUserLoadedState(success));
+        add(GetUsers());
+      });
+    });
   }
 }

@@ -64,3 +64,9 @@ class UpdateRoleParams {
 
   UpdateRoleParams(this.id, this.role);
 }
+
+class DeletUserParams {
+  final String id;
+
+  DeletUserParams(this.id);
+}

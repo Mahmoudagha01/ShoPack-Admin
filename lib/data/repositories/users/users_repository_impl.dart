@@ -49,4 +49,20 @@ class UsersRepositoryImpl implements UsersRepository {
       return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }
+
+  @override
+  Future<Either<Failure, ResponseModel>> deleteUser(
+      DeletUserParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data =
+            await usersDatasource.deleteUser(DeletUserParams(params.id));
+        return right(ResponseModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
 }

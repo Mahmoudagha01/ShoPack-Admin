@@ -1,5 +1,4 @@
 import 'package:shopack_admin/core/utilities/endpoints.dart';
-
 import '../../../core/helper/remote/network_provider.dart';
 import '../../../core/utilities/params.dart';
 
@@ -7,6 +6,7 @@ abstract class UsersDatasource {
   late APIProvider apiProvider;
   Future<Map<String, dynamic>> getAllUsers(NoParams params);
   Future<Map<String, dynamic>> updateRole(UpdateRoleParams params);
+  Future<Map<String, dynamic>> deleteUser(DeletUserParams params);
 }
 
 class UserDatasourceImpl implements UsersDatasource {
@@ -29,6 +29,13 @@ class UserDatasourceImpl implements UsersDatasource {
         endPoint: '$getSingleUserEndPoint${params.id}',
         data: {"role": params.role},
         token: token ?? "");
+    return response.data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> deleteUser(DeletUserParams params) async {
+    final response = await apiProvider.delete(
+        endPoint: "$getSingleUserEndPoint${params.id}", token: token ?? "");
     return response.data;
   }
 }
