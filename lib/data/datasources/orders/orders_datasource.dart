@@ -6,6 +6,7 @@ abstract class OrdersDataSource {
   late APIProvider apiProvider;
   Future<Map<String, dynamic>> getOrders(NoParams params);
   Future<Map<String, dynamic>> updateOrder(UpdateOrderParams params);
+   Future<Map<String, dynamic>> deleteOrder(UpdateOrderParams params);
 }
 
 class OrdersDataSourceImpl implements OrdersDataSource {
@@ -26,6 +27,13 @@ class OrdersDataSourceImpl implements OrdersDataSource {
   Future<Map<String, dynamic>> updateOrder(UpdateOrderParams params) async {
     final reponse = await apiProvider.put(
         endPoint: '$orderEndPoint${params.id}', data: {"status": "Delivered"},token: token??'');
+    return reponse.data;
+  }
+  
+  @override
+  Future<Map<String, dynamic>> deleteOrder(UpdateOrderParams params) async{
+ final reponse = await apiProvider.delete(
+        endPoint: '$orderEndPoint${params.id}',token: token??'');
     return reponse.data;
   }
 }

@@ -14,3 +14,9 @@ class UpdateOrder extends OrdersEvent {
 
   const UpdateOrder(this.id);
 }
+
+class DeleteOrder extends OrdersEvent {
+  final String id;
+
+  const DeleteOrder(this.id);
+}

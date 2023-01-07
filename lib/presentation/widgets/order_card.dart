@@ -139,7 +139,10 @@ class OrderCard extends StatelessWidget {
                   OutlinedButton.icon(
                     style: ButtonStyle(
                         foregroundColor: MaterialStateProperty.all(Colors.red)),
-                    onPressed: () {},
+                    onPressed: () {
+                       BlocProvider.of<OrdersBloc>(context)
+                                .add(DeleteOrder(order.id));
+                    },
                     icon: const Icon(Icons.delete),
                     label: const Text(AppStrings.delete),
                   ),

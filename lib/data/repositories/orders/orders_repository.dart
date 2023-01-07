@@ -12,4 +12,5 @@ abstract class OrdersRepository{
 
   Future<Either<Failure, AllOrdersModel>> getAllOrders(NoParams params);
   Future<Either<Failure, ResponseModel>> updateOrder(UpdateOrderParams params);
+    Future<Either<Failure, ResponseModel>> deleteOrder(UpdateOrderParams params);
 }

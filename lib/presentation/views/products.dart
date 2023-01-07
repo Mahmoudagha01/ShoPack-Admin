@@ -14,7 +14,6 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +40,27 @@ class _ProductsViewState extends State<ProductsView> {
               return const Center(child: CircularProgressIndicator());
             } else if (state is GetAllProductsLoadedState) {
               final product = state.data.products;
-              return ListView.builder(
-                itemCount: product.length,
-                itemBuilder: (context, index) => ProductListTile(product: product[index])
+              return Column(
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Center(
+                              child: Text(
+                            "All Products : ${state.data.products.length}",
+                            style: Theme.of(context).textTheme.headline6,
+                          ))),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: product.length,
+                        itemBuilder: (context, index) =>
+                            ProductListTile(product: product[index])),
+                  ),
+                ],
               );
             } else if (state is GetAllProductsErrorState) {
               return Text(state.message);

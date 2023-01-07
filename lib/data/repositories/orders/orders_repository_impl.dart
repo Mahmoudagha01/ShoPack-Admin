@@ -47,4 +47,18 @@ class OrdersRepositoryImpl implements OrdersRepository {
       return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }
+  
+  @override
+  Future<Either<Failure, ResponseModel>> deleteOrder(UpdateOrderParams params) async{
+  if (await networkInfo.isConnected) {
+      try {
+        final data = await ordersDataSource.deleteOrder(params);
+        return right(ResponseModel.fromJson(data));
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
 }
