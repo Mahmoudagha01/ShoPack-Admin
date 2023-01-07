@@ -28,3 +28,9 @@ class UpdateOrderLoadedState extends OrdersState {
 
   const UpdateOrderLoadedState(this.data);
 }
+
+class DeleteOrderLoadedState extends OrdersState {
+  final ResponseModel data;
+
+  const DeleteOrderLoadedState(this.data);
+}

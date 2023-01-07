@@ -25,15 +25,14 @@ class _ProductsViewState extends State<ProductsView> {
             children: const [Icon(Icons.add), Text(AppStrings.addProduct)],
           )),
       body: SafeArea(
-          child: BlocListener<ProductsBloc, ProductsState>(
-        listener: (context, state) {
-          if (state is DeleteProductsLoadedState && state.data.success) {
-            showSnackbar(state.data.message!, context, Colors.green);
-          } else if (state is DeleteProductsLoadedState) {
-            showSnackbar(state.data.message!, context, Colors.red);
-          }
-        },
-        child: BlocBuilder<ProductsBloc, ProductsState>(
+        child: BlocConsumer<ProductsBloc, ProductsState>(
+          listener: (context, state) {
+            if (state is DeleteProductsLoadedState && state.data.success) {
+              showSnackbar(state.data.message!, context, Colors.green);
+            } else if (state is DeleteProductsLoadedState) {
+              showSnackbar(state.data.message!, context, Colors.red);
+            }
+          },
           builder: (context, state) {
             if (state is GetAllProductsLoadingState ||
                 state is DeleteProductsLoadingState) {
@@ -69,7 +68,7 @@ class _ProductsViewState extends State<ProductsView> {
             }
           },
         ),
-      )),
+      ),
     );
   }
 }

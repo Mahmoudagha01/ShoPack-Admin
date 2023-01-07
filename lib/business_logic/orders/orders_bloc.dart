@@ -39,7 +39,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       failureOrSuccess
           .fold((failure) => emit(GetAllOrdersErrorState(failure.message)),
               (success) {
-        emit(UpdateOrderLoadedState(success));
+        emit(DeleteOrderLoadedState(success));
         add(GetAllOrders());
       });
     });

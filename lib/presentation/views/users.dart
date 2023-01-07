@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_admin/presentation/widgets/alert_snackbar.dart';
 import 'package:shopack_admin/presentation/widgets/user_card.dart';
 import '../../business_logic/users/user_bloc.dart';
 import '../../core/utilities/strings.dart';
@@ -11,7 +12,14 @@ class UsersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<UserBloc, UserState>(
+        child: BlocConsumer<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UpdateRoleLoadedState) {
+              showSnackbar(state.data.message!, context, Colors.green);
+            } else if(state is DeleteUserLoadedState){
+               showSnackbar(state.data.message!, context, Colors.green);
+            }
+          },
           builder: (context, state) {
             if (state is GetAllUsersLoadingState) {
               return const Center(child: CircularProgressIndicator());
