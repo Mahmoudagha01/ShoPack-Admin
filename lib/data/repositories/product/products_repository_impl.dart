@@ -9,6 +9,7 @@ import 'package:shopack_admin/data/models/product_model.dart';
 import 'package:shopack_admin/data/models/response_model.dart';
 import 'package:shopack_admin/data/models/reviews_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
+import '../../../core/utilities/params.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   @override
@@ -82,7 +83,8 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<Failure, ReviewsModel>> getReviews(GetReviewsParams params) async{
+  Future<Either<Failure, ReviewsModel>> getReviews(
+      GetReviewsParams params) async {
     if (await networkInfo.isConnected) {
       try {
         final data = await productDataSource.getReviews(params);
@@ -94,9 +96,10 @@ class ProductRepositoryImpl implements ProductRepository {
       return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }
-  
+
   @override
-  Future<Either<Failure, ResponseModel>> deleteReview(DeleteReviewsParams params) async{
+  Future<Either<Failure, ResponseModel>> deleteReview(
+      DeleteReviewsParams params) async {
     if (await networkInfo.isConnected) {
       try {
         final data = await productDataSource.deleteReview(params);

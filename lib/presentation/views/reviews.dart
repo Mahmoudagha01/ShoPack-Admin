@@ -28,16 +28,19 @@ class ReviewsView extends StatelessWidget {
           if (state is GetReviewsLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is GetReviewsLoadedState) {
-            return ListView.builder(
-              itemCount: state.data.reviews.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ReviewCard(
-                      product: state.data.reviews[index], productId: productId),
-                );
-              },
-            );
+            return state.data.reviews.isNotEmpty
+                ? ListView.builder(
+                    itemCount: state.data.reviews.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ReviewCard(
+                            product: state.data.reviews[index],
+                            productId: productId),
+                      );
+                    },
+                  )
+                :  Center(child: Text(AppStrings.noReviews,style: Theme.of(context).textTheme.headline6,));
           } else if (state is GetReviewsErrorState) {
             return Center(child: Text(state.message));
           } else {

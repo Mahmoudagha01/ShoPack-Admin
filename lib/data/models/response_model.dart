@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 
 class ResponseModel extends Equatable {
-  final String message;
+  final String? message;
   final bool success;
   const ResponseModel({
     required this.message,
@@ -15,5 +15,5 @@ class ResponseModel extends Equatable {
       );
 
   @override
-  List<Object> get props => [message, success];
+  List<Object?> get props => [message, success];
 }

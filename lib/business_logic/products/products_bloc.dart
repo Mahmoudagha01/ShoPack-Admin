@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shopack_admin/data/models/product_model.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
 import '../../core/env/env.dart';
+import '../../core/utilities/params.dart';
 import '../../data/models/all_product_model.dart';
 import '../../data/models/response_model.dart';
 import '../../data/models/reviews_model.dart';
@@ -131,7 +132,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       failureOrSuccess
           .fold((failure) => emit(DeleteReviewErrorState(failure.message)),
               (success) {
-       // add(GetReviews(event.productId));
+        add(GetReviews(event.productId));
         emit(DeleteReviewLoadedState(success));
       });
     });

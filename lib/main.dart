@@ -5,6 +5,7 @@ import 'package:shopack_admin/business_logic/products/products_bloc.dart';
 import 'package:shopack_admin/core/helper/local/shared_preference.dart';
 import 'package:shopack_admin/dependency_injection.dart';
 import 'business_logic/Admin/login_bloc.dart';
+import 'business_logic/orders/orders_bloc.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => injector<ProductsBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => injector<OrdersBloc >(),
         ),
       ],
       child: const MaterialApp(

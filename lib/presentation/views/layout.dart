@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_admin/business_logic/orders/orders_bloc.dart';
 import 'package:shopack_admin/business_logic/products/products_bloc.dart';
 import 'package:shopack_admin/presentation/views/dashboard.dart';
 import 'package:shopack_admin/presentation/views/orders.dart';
 import 'package:shopack_admin/presentation/views/products.dart';
 import 'package:shopack_admin/presentation/views/users.dart';
-
 import '../../business_logic/BNB/BottomNavigationBar_bloc.dart';
 
 class LayoutPage extends StatefulWidget {
@@ -45,10 +45,12 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 2:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadOrders());
+                         BlocProvider.of<OrdersBloc>(context).add(GetAllOrders());
                   break;
                 case 3:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadUsers());
+                    
                   break;
                 default:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
@@ -81,7 +83,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 return const DashBoardView();
               } else if (state is ProductsBtnState) {
                 return const ProductsView();
-              } else if (state is OrdersState) {
+              } else if (state is OrdersBtnState) {
                 return const OrdersView();
               } else if (state is UsersState) {
                 return const UsersView();

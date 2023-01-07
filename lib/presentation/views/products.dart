@@ -29,9 +29,9 @@ class _ProductsViewState extends State<ProductsView> {
           child: BlocListener<ProductsBloc, ProductsState>(
         listener: (context, state) {
           if (state is DeleteProductsLoadedState && state.data.success) {
-            showSnackbar(state.data.message, context, Colors.green);
+            showSnackbar(state.data.message!, context, Colors.green);
           } else if (state is DeleteProductsLoadedState) {
-            showSnackbar(state.data.message, context, Colors.red);
+            showSnackbar(state.data.message!, context, Colors.red);
           }
         },
         child: BlocBuilder<ProductsBloc, ProductsState>(

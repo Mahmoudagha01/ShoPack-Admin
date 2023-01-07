@@ -79,7 +79,7 @@ class ReviewCard extends StatelessWidget {
         child: IconButton(
           onPressed: () {
             BlocProvider.of<ProductsBloc>(context)
-                .add(DeleteReview(product.id!, productId));
+                .add(DeleteReview(productId,product.id!,));
           },
           icon: const Icon(Icons.delete),
           color: Colors.red,

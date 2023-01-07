@@ -17,10 +17,13 @@ class AppStrings {
   static const String addProduct = "Add Product";
   static const String editProduct = "Edit Product";
     static const String deleteProduct = "Delete Product";
+      static const String delete = "Delete";
+            static const String accept = "Accept";
    static const String showReviews = "Show Reviews";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
    static const String reviews = "Reviews";
+     static const String acepted = "Order Accepted";
   static const String ok = "Ok";
   static const String send = "Send";
   static const String submit = "Submit";
@@ -36,10 +39,9 @@ class AppStrings {
   static const String photoGalley = "Upload Product Images , at least two";
   static const String photoCamera = "camera";
   static const String about = "about";
-  static const String storeDetails = "store_details";
-  static const String changeLanguage = "change_language";
+  static const String noReviews = "There Is Not Reviews yet!";
+    static const String noOrders = "There Is Not Orders yet!";
   static const String contactUs = "contact_us";
-  static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
 
   // error handler

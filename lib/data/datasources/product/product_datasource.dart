@@ -1,6 +1,6 @@
 import 'package:shopack_admin/core/helper/remote/network_provider.dart';
 import 'package:shopack_admin/core/utilities/endpoints.dart';
-import '../../repositories/product/product_repository.dart';
+import '../../../core/utilities/params.dart';
 
 abstract class ProductDataSource {
   late APIProvider apiProvider;
@@ -73,7 +73,7 @@ class ProductDataSourceImpl implements ProductDataSource {
   Future<Map<String, dynamic>> deleteReview(DeleteReviewsParams params) async {
     final response = await apiProvider.delete(
         endPoint: deleteReviewsEndPoint,
-        query: {'productId': params.productId, 'id': params.reviewId});
+        query: {'productId': params.productId, 'id': params.reviewId}, token: token ?? '');
     return response.data;
   }
 }

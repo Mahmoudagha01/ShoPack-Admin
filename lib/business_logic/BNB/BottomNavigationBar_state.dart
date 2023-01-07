@@ -30,7 +30,7 @@ class ProductsBtnState extends BottomNavigationBarState {
   List<Object> get props => [index, title];
 }
 
-class OrdersState extends BottomNavigationBarState {
+class OrdersBtnState extends BottomNavigationBarState {
   @override
   final int index = 2;
   final String title = 'Orders';

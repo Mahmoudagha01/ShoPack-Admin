@@ -9,8 +9,13 @@ import 'package:shopack_admin/data/datasources/admin/admin_datasource.dart';
 import 'package:shopack_admin/data/datasources/product/product_datasource.dart';
 import 'package:shopack_admin/data/repositories/admin/admin_repoitory_impl.dart';
 import 'package:shopack_admin/data/repositories/admin/admin_repository.dart';
+import 'package:shopack_admin/data/repositories/orders/orders_repository.dart';
+import 'package:shopack_admin/data/repositories/orders/orders_repository_impl.dart';
 import 'package:shopack_admin/data/repositories/product/product_repository.dart';
 import 'package:shopack_admin/data/repositories/product/products_repository_impl.dart';
+
+import 'business_logic/orders/orders_bloc.dart';
+import 'data/datasources/orders/orders_datasource.dart';
 
 GetIt injector = GetIt.instance;
 
@@ -19,16 +24,21 @@ Future<void> init() async {
   injector.registerFactory(() => LoginBloc(injector()));
   injector.registerFactory(() => BottomNavigationBarBloc());
   injector.registerFactory(() => ProductsBloc(injector()));
+  injector.registerFactory(() => OrdersBloc(injector()));
 //Repository
   injector.registerLazySingleton<ProductRepository>(() => ProductRepositoryImpl(
       networkInfo: injector(), productDataSource: injector()));
   injector.registerLazySingleton<AdminRepository>(() => AdminRepositoryImpl(
       networkInfo: injector(), adminDatasouece: injector()));
+  injector.registerLazySingleton<OrdersRepository>(() => OrdersRepositoryImpl(
+      networkInfo: injector(), ordersDataSource: injector()));
 //DataSource
   injector.registerLazySingleton<AdminDatasource>(
       () => AdminDataSourceImpl(apiProvider: injector()));
   injector.registerLazySingleton<ProductDataSource>(
       () => ProductDataSourceImpl(apiProvider: injector()));
+      injector.registerLazySingleton<OrdersDataSource>(
+      () => OrdersDataSourceImpl(apiProvider: injector()));
 //Core
 
   injector
