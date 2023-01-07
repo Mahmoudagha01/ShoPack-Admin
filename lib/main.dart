@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_admin/business_logic/BNB/BottomNavigationBar_bloc.dart';
 import 'package:shopack_admin/business_logic/products/products_bloc.dart';
+import 'package:shopack_admin/business_logic/users/user_bloc.dart';
 import 'package:shopack_admin/core/helper/local/shared_preference.dart';
 import 'package:shopack_admin/dependency_injection.dart';
 import 'business_logic/Admin/login_bloc.dart';
@@ -33,7 +34,10 @@ class MyApp extends StatelessWidget {
           create: (context) => injector<ProductsBloc>(),
         ),
         BlocProvider(
-          create: (context) => injector<OrdersBloc >(),
+          create: (context) => injector<OrdersBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => injector<UserBloc>(),
         ),
       ],
       child: const MaterialApp(

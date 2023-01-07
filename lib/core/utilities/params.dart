@@ -57,3 +57,10 @@ class UpdateOrderParams {
 
   UpdateOrderParams(this.id);
 }
+
+class UpdateRoleParams {
+  final String id;
+  final String role;
+
+  UpdateRoleParams(this.id, this.role);
+}

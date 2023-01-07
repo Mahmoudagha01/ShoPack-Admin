@@ -26,5 +26,5 @@ class GetAllOrdersErrorState extends OrdersState {
 class UpdateOrderLoadedState extends OrdersState {
   final ResponseModel data;
 
-  UpdateOrderLoadedState(this.data);
+  const UpdateOrderLoadedState(this.data);
 }
