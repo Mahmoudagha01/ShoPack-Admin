@@ -1,6 +1,5 @@
-# **ShoPack E-Commerce App Using Flutter
-(Admin Version 👮‍♂️)**
-
+# **ShoPack E-Commerce App Using Flutter**
+**(Admin Version 👮‍♂️)**
 # video
 You can see a Demo video [Here](https://youtu.be/1vWLRVvNGP4)
 
