@@ -19,6 +19,8 @@ class LayoutPage extends StatefulWidget {
 class _LayoutPageState extends State<LayoutPage> {
   @override
   void initState() {
+    BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+     BlocProvider.of<OrdersBloc>(context).add(GetAllOrders());
     super.initState();
   }
 
@@ -36,7 +38,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 0:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadDashboard());
-
+BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
                   break;
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)

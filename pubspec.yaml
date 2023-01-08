@@ -45,8 +45,9 @@ dependencies:
   get_it: ^7.2.0
   image_picker: ^0.8.6
   internet_connection_checker: ^1.0.0+1
-  intl: ^0.18.0
+  intl: ^0.17.0
   shared_preferences: ^2.0.15
+  syncfusion_flutter_charts: ^20.4.42
 
 dev_dependencies:
   build_runner: ^2.3.2
