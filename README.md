@@ -11,8 +11,6 @@ You can see a Demo video [Here](https://youtu.be/1vWLRVvNGP4)
 
   View Product Reviews                  |   Seetings PopUp Menu       |  Orders Screen |  Users Screen      
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![Screenshot__com example shopack_admin](https://user-images.githubusercontent.com/55716560/211194793-4da281ae-6538-461b-aa61-3f5204b4d1d8.jpg)|![Screenshot_٢٠٢٣-٠١-٠٨-١٣-٥٩-١٢-١٨٢_com example shopack_admin](https://user-images.githubusercontent.com/55716560/211194868-afd40225-c156-4ec2-8490-56080975eeee.jpg)
-|![Screenshot_٢٠٢٣-٠١-٠٨-١٣-٥٣-٢٢-٠٧١_com example shopack_admin](https://user-images.githubusercontent.com/55716560/211195065-4f457f15-9a46-4a18-8f8a-e45f650e98a5.jpg)
-|![Screenshot_٢٠٢٣-٠١-٠٨-١٤-٠٥-٠٩-٦٤٤_com example shopack_admin](https://user-images.githubusercontent.com/55716560/211195108-cfbb2384-789b-4a5f-b210-602fad4f0566.jpg)
+![Screenshot__com example shopack_admin](https://user-images.githubusercontent.com/55716560/211194793-4da281ae-6538-461b-aa61-3f5204b4d1d8.jpg)|![Screenshot_٢٠١٨٢_com example shopack_admin](https://user-images.githubusercontent.com/55716560/211194868-afd40225-c156-4ec2-8490-56080975eeee.jpg)|![Screenshotcom example shopack_admin](https://user-images.githubusercontent.com/55716560/211195065-4f457f15-9a46-4a18-8f8a-e45f650e98a5.jpg)|![Screenshotom example shopack_admin](https://user-images.githubusercontent.com/55716560/211195108-cfbb2384-789b-4a5f-b210-602fad4f0566.jpg)
 
 
